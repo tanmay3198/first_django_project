@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Month</li>
+{% endblock %}
+
+
+{% block content %}
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Month</th>
+      <th>Total Income</th>
+      <th>Total Expenditure</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for mon in months %}
+      <tr>
+        <td>
+          <a href="{% url 'inside_month' mon.pk%}">{{ mon.month }}</a>
+        </td>
+        <td class="align-middle">{{ mon.total_income }}</td>
+        <td class="align-middle">{{ mon.total_expenditure }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+{% endblock %}

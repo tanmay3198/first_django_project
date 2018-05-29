@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ board.name }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Month</a></li>
+  <li class="breadcrumb-item active">{{ mon.month }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="mb-4">
+    <a href="{% url 'new_entry' mon.pk %}" class="btn btn-primary">New Entry</a>
+  </div>
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Date</th>
+        <th>Income</th>
+        <th>Expense</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for day in mon.account.all %}
+        <tr>
+          <td>{{ day.date }}</td>
+          <td>{{ day.income }}</td>
+          <td>{{ day.expense }}</td>
+          <td>{{ day.description }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

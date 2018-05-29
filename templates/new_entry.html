@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  New Entry
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Month</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'inside_month' mon.pk %}">{{ mon.month }}</a></li>
+  <li class="breadcrumb-item active">New Entry</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="id_date">Date</label>
+      <input type="text" class="form-control" id="id_date" name="Date">
+    </div>
+
+    <div class="form-group">
+      <label for="id_income">Income</label>
+      <input type="text" class="form-control" id="id_income" name="income">
+    </div>
+
+    <div class="form-group">
+      <label for="id_expense">Expense</label>
+      <input type="text" class="form-control" id="id_expense" name="expense">
+    </div>
+
+    <div class="form-group">
+      <input type="radio" name="type" value="cash" checked>  Cash<br>
+      <input type="radio" name="type" value="cashless">  Cashless<br>
+    </div>
+
+    <div class="form-group">
+      <label for="id_description">Description</label>
+      <input type="text" class="form-control" id="id_description" name="description">
+    </div>
+
+    <button type="submit" class="btn btn-success">Add</button>
+
+  </form>
+{% endblock %}
